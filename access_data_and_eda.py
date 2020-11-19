@@ -14,6 +14,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 from matplotlib import rcParams
+import matplotlib.pyplot as plt
 
 # set figure size in inches
 rcParams['figure.figsize'] = 11.7,8.27
@@ -78,13 +79,17 @@ def_sub['player'] = def_sub['first_name'] + " " + def_sub['second_name']
 
 
 #create barplots to look at graphical representation of position dataframes by roi
-gk = sns.barplot(x="roi", y="player", data=gk_sub)
+plt.figure()
+sns.barplot(x="roi", y="player", data=gk_sub)
 
-mf = sns.barplot(x="roi", y="player", data=mf_sub.iloc[0:20,:])
+plt.figure()
+sns.barplot(x="roi", y="player", data=mf_sub.iloc[0:20,:])
 
-fwd = sns.barplot(x="roi", y="player", data=fwd_sub.iloc[0:20,:])
+plt.figure()
+sns.barplot(x="roi", y="player", data=fwd_sub.iloc[0:20,:])
 
-defe = sns.barplot(x="roi", y="player", data=def_sub.iloc[0:20,:])
+plt.figure()
+sns.barplot(x="roi", y="player", data=def_sub.iloc[0:20,:])
 
 #correlation function
 def corr_hp(df):
@@ -98,8 +103,12 @@ def corr_hp(df):
 
 # Draw the heatmap with the mask and correct aspect ratio
     return sns.heatmap(df_corr, mask=df_mask, vmax=.3, center=0, square=True, linewidths=.5, cbar_kws={"shrink": .5})
-   
+
+plt.figure()
 corr_hp(gk_sub)
+plt.figure()
 corr_hp(mf_sub)
+plt.figure()
 corr_hp(fwd_sub)
+plt.figure()
 corr_hp(def_sub)
